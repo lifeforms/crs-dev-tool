@@ -36,7 +36,7 @@ Edit the file `~/.crs` in your favorite editor, defining your CRS code directory
 ## Running tests
 
 - `crs test` will run the full test suite on your local CRS directory.
-- `crs serve` will run a web server on the CRS at http://localhost/
+- `crs serve` will run a web server on the CRS at http://localhost/. Try http://localhost/?foo=/etc/passwd!
 - `crs shell` executes bash inside a running container that's busy testing/serving. It might be used for debugging.
 
 ## Miscellaneous functions
