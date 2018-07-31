@@ -30,7 +30,7 @@ Edit the file `~/.crs` in your favorite editor, defining your CRS code directory
 ## Reviewing issues and PRs
 
 - `crs issue` will open a browser at the GitHub CRS issues page.
-- `crs issue 1234` will open a browser with issue #1234 open.
+- `crs issue 1234` will open a browser with issue or PR #1234 open.
 - `crs review user:branch` will check out that user's CRS fork and branch, so you can compare and test.
 
 ## Running tests
