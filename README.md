@@ -2,9 +2,11 @@
 
 Shell script for automating some common CRS development functions.
 
-Currently tested only on macOS, will accept patches to improve this.
+Using Docker, it allows you to develop the CRS on your local machine without any infrastructure.
 
 Necessary dependencies: awk, curl, Docker, git.
+
+Currently tested only on macOS, will accept patches to improve this.
 
 ## Installation
 
