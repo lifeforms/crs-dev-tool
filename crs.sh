@@ -6,6 +6,7 @@ crs_help() {
 	echo "  crs branch                 List available CRS development branches"
 	echo "  crs clean <branch>         Remove everything and checkout your fork"
 	echo "  crs merge                  Merge upstream changes into your fork"
+	echo "  crs review <user>:<branch> Check out and edit somebody else's PR"
 	echo
 	echo "Testing:"
 	echo "  crs test                   Run full test suite on your CRS copy"
@@ -15,9 +16,9 @@ crs_help() {
 	echo "  crs serve                  Run a web server on your CRS copy"
 	echo "  crs shell                  Open bash in a running test/serve container"
 	echo
-	echo "Issues:"
+	echo "Misc:"
 	echo "  crs issue [<num>]          Open issue/PR [#num] page in browser"
-	echo "  crs review <user>:<branch> Check out and edit somebody else's PR"
+	echo "  crs update                 Upgrade this script to latest version"
 	echo
 	echo "Your CRS code directory:     $basedir"
 	echo "Configuration file:          $config_file"
@@ -195,6 +196,13 @@ crs_shell() {
 	docker exec -it crs-test bash || exit 70
 }
 
+crs_update() {
+	url=https://raw.githubusercontent.com/lifeforms/crs-dev-tool/master/crs.sh
+	self=$0
+	curl -o $self $url
+	chmod a+x $self
+}
+
 # Main
 
 check_config_file
@@ -232,6 +240,10 @@ case "$1" in
 		;;
 	shell)
 		crs_shell
+		exit 0
+		;;
+	update)
+		crs_update
 		exit 0
 		;;
 	help|-h|"")
