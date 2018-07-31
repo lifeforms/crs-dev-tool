@@ -33,7 +33,7 @@ Edit the file `~/.crs` in your favorite editor, defining your CRS code directory
 - `crs issue 1234` will open a browser with issue or PR #1234 open.
 - `crs review user:branch` will check out that user's CRS fork and branch, so you can compare and test.
 
-## Running tests
+## Testing and debugging
 
 - `crs test` will run the full test suite on your local CRS directory.
 - `crs test 920470` will only run the tests for ruleId 920470, stored in 920470.yaml.
