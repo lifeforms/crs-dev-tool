@@ -27,7 +27,7 @@ Edit the file `~/.crs` in your favorite editor, defining your CRS code directory
 - `crs clean v3.1/dev` will initialize your code directory, check out your fork with the `v3.1/dev` CRS branch, and add the upstream remote. Warning: this will destroy any local content in your code directory!
 - `crs merge` integrates upstream changes into your fork and code directory. Do this regularly, so you're not too far behind.
 
-## Reviewing PRs
+## Reviewing issues and PRs
 
 - `crs issue` will open a browser at the GitHub CRS issues page.
 - `crs issue 1234` will open a browser with issue #1234 open.
