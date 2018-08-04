@@ -139,7 +139,10 @@ crs_review() {
 		exit 23
 	}
 	git fetch -q $user || exit 24
-	git checkout -b $user-$branch $user/$branch || exit 25
+	git checkout -b $user-$branch $user/$branch || \
+		(git checkout -q $user-$branch && git pull) || \
+		exit 25
+
 	echo "To return to your own fork, try: git checkout v3.1/dev"
 }
 
