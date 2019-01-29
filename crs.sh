@@ -44,6 +44,9 @@ check_config_file() {
 upstream=git@github.com:SpiderLabs/owasp-modsecurity-crs.git
 upstream_web=https://github.com/SpiderLabs/owasp-modsecurity-crs/
 docker_test_image=lifeforms/crs-test
+docker_test_image_modsec2=lifeforms/crs-test
+docker_test_image_modsec3=lifeforms/modsec3-crs-test
+docker_test_image_nginx=lifeforms/nginx-crs-test
 EOF
 		echo "Please edit config file $config_file before using this command."
 		exit 2
@@ -172,13 +175,26 @@ crs_issue() {
 }
 
 crs_test() {
-	(docker pull $docker_test_image > /dev/null) || exit 50
+	rule=''
+	echo $1 | grep -q -E '^[0-9]+$' && rule=$1
+	echo $2 | grep -q -E '^[0-9]+$' && rule=$2
+	image=''
+	echo $1 | grep -q -E '^[a-z][a-z0-9]+$' && image=_$1
+	echo $2 | grep -q -E '^[a-z][a-z0-9]+$' && image=_$2
+	docker_image=$(eval echo "\$docker_test_image${image}")
+	[ -z "$docker_image" ] && {
+		echo Setting \"docker_test_image${image}\" not found.
+		echo "Please edit config file $config_file before using this command."
+		exit 20
+	}
+
+	(docker pull $docker_image > /dev/null) || exit 50
 	docker run \
 		--name crs-test \
 		--rm \
 		-it \
 		-v $basedir:/crs \
-		$docker_test_image /run-tests.sh $1 || exit 51
+		$docker_image /run-tests.sh $rule || exit 51
 }
 
 crs_serve() {
@@ -234,7 +250,7 @@ case "$1" in
 		exit 0
 		;;
 	test)
-		crs_test $2
+		crs_test $2 $3
 		exit
 		;;
 	serve)
